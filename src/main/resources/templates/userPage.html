@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+    <style>
+        th, td {
+            padding: 25px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+</head>
+<body>
+<header>
+    <div class="container-fluid bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand text-white" href="#"><h5><span sec:authentication="name"></span></h5></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active text-white-50">
+
+                        <h5>with roles:
+                            <span
+                                    sec:authorize="hasRole('ROLE_ADMIN')">
+                                ADMIN
+                            </span>
+                            <span sec:authorize="hasRole('ROLE_USER') and hasRole('ROLE_ADMIN')">
+                                &
+                            </span>
+                            <span sec:authorize="hasRole('ROLE_USER')">
+                                USER
+                            </span>
+                        </h5>
+                    </li>
+                </ul>
+                <a class="nav-link text-white-50" href="http://localhost:8080/login">Logout</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 px-0">
+            <br>
+            <div class="nav nav-pills flex-column">
+                <a class="nav-link" id="list-home-list" data-toggle="list"
+                   href="/admin" role="tab" sec:authorize="hasRole('ROLE_ADMIN')" aria-controls="home">Admin</a>
+                <a class="nav-link active" id="list-profile-list" data-toggle="list"
+                   href="/user" sec:authorize="hasRole('ROLE_USER')" role="tab" aria-controls="profile">User</a>
+            </div>
+        </div>
+
+        <div class="container col-md-10 bg-light px-4 py-3">
+            <h1>User page</h1>
+            <ul class="nav nav-tabs pt-2" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="admin"
+                       aria-selected="true" href="/admin">User table</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <b>About User</b>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped border">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Work</th>
+                                <th>Role</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><span sec:authentication="principal.id"></span></td>
+                                <td><span sec:authentication="principal.name"></span></td>
+                                <td><span sec:authentication="principal.lastname"></span></td>
+                                <td><span sec:authentication="principal.age"></span></td>
+                                <td><span sec:authentication="principal.work"></span></td>
+                                <td><span sec:authentication="principal.roles"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
