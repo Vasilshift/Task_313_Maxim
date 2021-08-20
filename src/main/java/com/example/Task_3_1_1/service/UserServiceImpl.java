@@ -13,7 +13,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
-
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -21,7 +20,6 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     @Transactional(readOnly = true)
     @Override

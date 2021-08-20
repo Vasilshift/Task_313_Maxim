@@ -8,7 +8,7 @@ import java.util.List;
 public interface RoleDao {
     Role getRoleByName(String name);
 
-    Role getDefaultRole();
+//    Role getDefaultRole();
 
     void add(Role role);
 

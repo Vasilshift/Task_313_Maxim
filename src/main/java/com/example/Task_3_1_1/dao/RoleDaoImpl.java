@@ -21,10 +21,10 @@ public class RoleDaoImpl implements RoleDao {
                 .getSingleResult();
     }
 
-    @Override
-    public Role getDefaultRole() {
-        return getRoleByName("ROLE_GUEST");
-    }
+//    @Override
+//    public Role getDefaultRole() {
+//        return getRoleByName("ROLE_GUEST");
+//    }
 
     @Override
     public void add(Role role) {

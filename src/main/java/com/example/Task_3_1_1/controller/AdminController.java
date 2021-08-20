@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 
 @Controller
-@RequestMapping("")
+@RequestMapping()
 public class AdminController {
 
     private final UserService userService;
-
     private final RoleService roleService;
-
     private final InitServiceImpl initServiceImpl;
 
     @Autowired
@@ -26,11 +24,6 @@ public class AdminController {
         this.userService = userService;
         this.roleService = roleService;
         this.initServiceImpl = initServiceImpl;
-    }
-
-    @PostConstruct
-    public void firstInitialization() {
-        initServiceImpl.initServiceImpl();
     }
 
     @GetMapping("/admin")

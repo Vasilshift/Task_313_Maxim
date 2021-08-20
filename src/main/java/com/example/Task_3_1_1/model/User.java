@@ -28,9 +28,6 @@ public class User implements UserDetails {
     @Column(name = "age")
     private int age;
 
-    @Column(name = "work")
-    private String work;
-
     @Column(name = "username", unique = true)
     private String username;
 
@@ -41,12 +38,11 @@ public class User implements UserDetails {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 
-    public User(String name, String lastname, int age, String work, Set<Role> roles) {
+    public User(String name, String lastname, int age, Set<Role> roles) {
         this.name = name;
         this.lastname = lastname;
-        this.work = work;
         this.age = age;
         this.roles = roles;
     }

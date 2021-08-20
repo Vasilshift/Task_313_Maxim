@@ -27,16 +27,14 @@ public class InitServiceImpl implements InitService {
         if (roleService.allRoles().size() == 0) {            // roles initialization
             Role adminRole = new Role("ROLE_ADMIN");
             Role userRole = new Role("ROLE_USER");
-            Role guestRole = new Role("ROLE_GUEST");
-            roleService.add(adminRole);
-            roleService.add(userRole);
-            roleService.add(guestRole);
+            roleService.addRole(adminRole);
+            roleService.addRole(userRole);
         }
 
         if (userService.allUsers().size() == 0) {            // admin initialization
             user.setUsername("admin");
             user.setPassword("admin");
-            user.setAge(1);
+            user.setAge(23);
             Set<Role> roles = new HashSet<>();
             roles.add(roleService.getRoleByName("ROLE_ADMIN"));
             user.setRoles(roles);

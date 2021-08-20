@@ -9,49 +9,45 @@ import com.example.Task_3_1_1.service.RoleService;
 import com.example.Task_3_1_1.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.PostConstruct;
 
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/api")
-public class AdminRestController {
+public class MyRestController {
 
     private final UserService userService;
-
     private final RoleService roleService;
-
     private final InitServiceImpl initServiceImpl;
 
     @Autowired
-    public AdminRestController(UserService userService, RoleService roleService,
-                               InitServiceImpl initServiceImpl) {
+    public MyRestController(UserService userService, RoleService roleService,
+                            InitServiceImpl initServiceImpl) {
         this.userService = userService;
         this.roleService = roleService;
         this.initServiceImpl = initServiceImpl;
     }
-
-    @PostConstruct
-    public void firstInitialization() {
-        initServiceImpl.initServiceImpl();
-    }
+//
+//    @PostConstruct
+//    public void firstInitialization() {
+//        initServiceImpl.initServiceImpl();
+//    }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> allUsers(Model model) {
-        return new ResponseEntity<>(userService.allUsers(),HttpStatus.OK);
+    public List<User> apiGetAllUsers() {
+        List<User> users = userService.allUsers();
+        return users;
     }
 
     @GetMapping("users/{id}")
-    public ResponseEntity<User> get(@PathVariable int id) {
+    public User get(@PathVariable int id) {
         User user = userService.get(id);
-        if(user == null){
-            throw new NoSuchUserException("There is no user with id "+ id);
-        }
-        return new ResponseEntity<>(user, HttpStatus.OK);
+//        if(user == null){
+//            throw new NoSuchUserException("There is no user with id "+ id);
+//        }
+        return user;
     }
 
     @PostMapping("/users")

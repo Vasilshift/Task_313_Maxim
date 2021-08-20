@@ -37,14 +37,11 @@ public class RoleServiceImpl implements RoleService {
         if (user.getRoles().contains(getRoleByName("ROLE_USER"))) {
             rolesSet.add(getRoleByName("ROLE_USER"));
         }
-
-        rolesSet.add(getRoleByName("ROLE_GUEST"));
-        user.setRoles(rolesSet);
     }
 
     @Transactional
     @Override
-    public void add(Role role) {
+    public void addRole(Role role) {
         roleDao.add(role);
     }
 

@@ -4,7 +4,6 @@ import com.example.Task_3_1_1.model.User;
 
 import java.util.List;
 
-
 public interface UserDao {
 
     List<User> allUsers();
